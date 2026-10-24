@@ -1,0 +1,9 @@
+#EXTM3U
+#EXTINF:-1 group-title="Kamery1",Stream 1
+rtsp://192.168.1.167:1111/test1
+
+#EXTINF:-1 group-title="Kamery2",Stream 2
+rtsp://192.168.1.167:2222/test2
+
+#EXTINF:-1 group-title="CZ STREAMS",CZ
+https://raw.githubusercontent.com/iptv-org/iptv/refs/heads/master/streams/cz.m3u
