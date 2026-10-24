@@ -6,324 +6,322 @@
     <title>PZ IPTV</title>
     <style>
       :root {
-        --bg: #0b1220;
-        --bg-soft: #111827;
-        --panel: rgba(15, 23, 42, 0.9);
-        --panel-strong: rgba(17, 24, 39, 0.96);
-        --panel-alt: rgba(30, 41, 59, 0.85);
-        --border: rgba(148, 163, 184, 0.18);
-        --muted: #94a3b8;
-        --text: #f8fafc;
-        --text-soft: #cbd5e1;
-        --accent: #38bdf8;
-        --accent-strong: #0ea5e9;
-        --success: #34d399;
-        --shadow: 0 20px 50px rgba(15, 23, 42, 0.45);
+        --bg: #f3f4f6;
+        --panel: #ffffff;
+        --panel-alt: #f8fafc;
+        --text: #0f172a;
+        --muted: #475569;
+        --border: #e2e8f0;
+        --shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+        --accent: #0ea5e9;
+        --accent-soft: rgba(14, 165, 233, 0.08);
+        --green: #16a34a;
+        --green-soft: rgba(22, 163, 74, 0.08);
+        --radius: 14px;
       }
 
-      * { box-sizing: border-box; }
+      * {
+        box-sizing: border-box;
+      }
 
-      html, body {
-        margin: 0;
-        min-height: 100%;
-        background:
-          radial-gradient(circle at top left, rgba(14, 165, 233, 0.18), transparent 35%),
-          linear-gradient(180deg, var(--bg) 0%, #020817 100%);
-        color: var(--text);
-        font-family: Inter, "Segoe UI", sans-serif;
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
+        margin: 0;
         min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 32px 18px 64px;
       }
 
       .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 20;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
-        padding: 18px 28px;
-        background: rgba(2, 6, 23, 0.72);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid var(--border);
+        gap: 18px;
+        padding: 10px 0 24px;
       }
 
-      .brand-wrap {
+      .brand {
         display: flex;
         align-items: center;
         gap: 12px;
-        min-width: 0;
       }
 
-      .brand-badge {
+      .brand-mark {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 42px;
-        height: 42px;
-        border-radius: 12px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #0ea5e9, #2563eb);
+        color: white;
         font-weight: 800;
-        color: #02131d;
-        box-shadow: 0 10px 30px rgba(14, 165, 233, 0.35);
-      }
-
-      .title {
-        margin: 0;
-        font-size: clamp(1.3rem, 2vw, 2rem);
+        font-size: 12px;
         letter-spacing: 0.04em;
-        white-space: nowrap;
+        box-shadow: 0 10px 18px rgba(14, 165, 233, 0.22);
       }
 
-      .header-actions {
+      .brand-name {
+        font-size: clamp(1.35rem, 2vw, 2.1rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      .top-actions {
         display: flex;
         align-items: center;
         gap: 12px;
         flex-wrap: wrap;
-        justify-content: flex-end;
       }
 
-      .search-box {
+      .search-wrap {
         display: flex;
         align-items: center;
         gap: 10px;
-        min-width: min(480px, 70vw);
+        width: min(540px, 62vw);
+        min-width: 240px;
         padding: 12px 14px;
+        background: var(--panel);
         border: 1px solid var(--border);
         border-radius: 12px;
-        background: rgba(15, 23, 42, 0.8);
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+        box-shadow: var(--shadow);
       }
 
-      .search-box svg {
+      .search-wrap svg {
         width: 18px;
         height: 18px;
+        fill: var(--muted);
         flex-shrink: 0;
-        opacity: 0.8;
       }
 
-      .search-box input {
-        flex: 1;
-        min-width: 100px;
+      .search-wrap input {
+        width: 100%;
         border: 0;
         outline: none;
         background: transparent;
         color: var(--text);
-        font-size: 1rem;
+        font-size: 0.98rem;
       }
 
-      .search-box input::placeholder {
+      .search-wrap input::placeholder {
         color: var(--muted);
       }
 
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        border: 1px solid rgba(56, 189, 248, 0.35);
-        border-radius: 12px;
-        background: rgba(14, 165, 233, 0.08);
+      .primary-btn,
+      .ghost-btn,
+      .row-btn {
+        appearance: none;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--panel);
         color: var(--text);
-        padding: 11px 14px;
         font-weight: 600;
+        font-size: 0.92rem;
         cursor: pointer;
-        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
       }
 
-      .button:hover {
+      .primary-btn:hover,
+      .ghost-btn:hover,
+      .row-btn:hover {
         transform: translateY(-1px);
-        border-color: rgba(56, 189, 248, 0.7);
-        background: rgba(14, 165, 233, 0.14);
+        border-color: rgba(14, 165, 233, 0.45);
+        box-shadow: 0 8px 20px rgba(14, 165, 233, 0.08);
       }
 
-      .button svg {
-        width: 16px;
-        height: 16px;
+      .primary-btn {
+        background: var(--accent-soft);
+        border-color: rgba(14, 165, 233, 0.2);
       }
 
-      main {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 28px 20px 56px;
+      .primary-btn,
+      .ghost-btn {
+        min-height: 44px;
+        padding: 0 14px;
       }
 
-      .top-summary {
-        display: flex;
-        gap: 16px;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        margin-bottom: 26px;
+      .hero {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        padding: 14px 0 0;
       }
 
-      .summary-text {
-        color: var(--text-soft);
-        font-size: 0.98rem;
+      .hero h2 {
         margin: 0;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        letter-spacing: -0.05em;
       }
 
-      .summary-pill {
+      .hero p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 1.03rem;
+      }
+
+      .stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .stat {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        padding: 10px 14px;
+        gap: 7px;
+        padding: 8px 12px;
+        background: rgba(255,255,255,0.6);
         border: 1px solid var(--border);
         border-radius: 999px;
-        background: rgba(15, 23, 42, 0.7);
         color: var(--muted);
-        font-size: 0.85rem;
+        font-size: 0.82rem;
+        font-weight: 600;
       }
 
-      .summary-pill .dot {
+      .stat-dot {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: var(--success);
-        box-shadow: 0 0 12px rgba(52, 211, 153, 0.9);
+        background: var(--green);
+        box-shadow: 0 0 0 4px var(--green-soft);
       }
 
-      .country-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-        gap: 18px;
-      }
-
-      .country-card {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.96));
+      .list {
+        margin-top: 24px;
+        background: rgba(255,255,255,0.38);
         border: 1px solid var(--border);
         border-radius: 18px;
-        box-shadow: var(--shadow);
         overflow: hidden;
+        box-shadow: var(--shadow);
       }
 
-      .country-head {
+      .list-header {
+        display: grid;
+        grid-template-columns: minmax(160px, 2fr) minmax(90px, 1fr) minmax(170px, 1.2fr);
+        gap: 10px;
+        align-items: center;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--border);
+        background: rgba(248, 250, 252, 0.8);
+        color: var(--muted);
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .country-row {
+        display: grid;
+        grid-template-columns: minmax(160px, 2fr) minmax(90px, 1fr) minmax(170px, 1.2fr);
+        gap: 10px;
+        align-items: center;
+        padding: 18px;
+        border-bottom: 1px solid var(--border);
+        background: rgba(255,255,255,0.75);
+      }
+
+      .country-row:last-child {
+        border-bottom: 0;
+      }
+
+      .country-main {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         gap: 12px;
-        padding: 18px 18px 12px;
-        border-bottom: 1px solid var(--border);
+        min-width: 0;
       }
 
-      .country-title {
+      .country-code {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 46px;
+        height: 32px;
+        padding: 0 8px;
+        border-radius: 9px;
+        background: var(--accent-soft);
+        color: #0f3b5a;
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      .country-name-wrap {
+        min-width: 0;
+      }
+
+      .country-name {
         margin: 0;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 700;
+        letter-spacing: -0.02em;
       }
 
-      .country-meta {
+      .country-sub {
         margin: 4px 0 0;
         color: var(--muted);
-        font-size: 0.78rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
+        font-size: 0.8rem;
       }
 
-      .copy-btn {
-        appearance: none;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 10px;
-        background: rgba(15, 23, 42, 0.7);
-        color: var(--text);
-        width: 38px;
-        height: 38px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+      .channel-count {
+        font-weight: 700;
+        color: var(--muted);
       }
 
-      .copy-btn:hover {
-        transform: translateY(-1px);
-        border-color: rgba(56, 189, 248, 0.6);
-        background: rgba(14, 165, 233, 0.12);
-      }
-
-      .copy-btn svg {
-        width: 17px;
-        height: 17px;
-      }
-
-      .channels {
-        padding: 12px 14px 18px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        max-height: 330px;
-        overflow: auto;
-      }
-
-      .channel-item {
+      .row-actions {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        padding: 10px 10px;
-        border-radius: 10px;
-        background: rgba(30, 41, 59, 0.45);
-        border: 1px solid rgba(148, 163, 184, 0.12);
+        justify-content: flex-end;
+        gap: 8px;
+        flex-wrap: wrap;
       }
 
-      .channel-name {
-        flex: 1;
-        min-width: 0;
-        color: var(--text-soft);
-        font-size: 0.92rem;
-        overflow-wrap: anywhere;
-        word-break: break-word;
+      .row-btn {
+        min-height: 36px;
+        padding: 0 12px;
+        font-size: 0.83rem;
       }
 
-      .mini-copy {
-        appearance: none;
-        border: 0;
-        background: rgba(56, 189, 248, 0.08);
-        border-radius: 8px;
-        color: var(--text);
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .mini-copy:hover {
-        background: rgba(56, 189, 248, 0.16);
-      }
-
-      .mini-copy svg {
-        width: 14px;
-        height: 14px;
+      .row-btn.primary {
+        background: var(--accent-soft);
+        border-color: rgba(14, 165, 233, 0.2);
       }
 
       .empty {
-        padding: 28px 16px;
+        padding: 30px 18px;
         text-align: center;
         color: var(--muted);
-        border: 1px dashed var(--border);
-        border-radius: 18px;
-        background: rgba(15, 23, 42, 0.48);
+        font-size: 1rem;
       }
 
       .toast {
         position: fixed;
-        right: 20px;
-        bottom: 20px;
-        padding: 12px 14px;
-        background: rgba(15, 23, 42, 0.9);
-        border: 1px solid rgba(52, 211, 153, 0.4);
-        border-radius: 12px;
-        color: var(--text);
-        box-shadow: var(--shadow);
+        right: 18px;
+        bottom: 18px;
+        background: rgba(15, 23, 42, 0.96);
+        color: white;
+        padding: 10px 14px;
+        border-radius: 10px;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
         opacity: 0;
         transform: translateY(12px);
         pointer-events: none;
-        transition: opacity 0.25s ease, transform 0.25s ease;
+        transition: all 0.2s ease;
       }
 
       .toast.show {
@@ -333,113 +331,121 @@
 
       @media (max-width: 760px) {
         .topbar {
-          padding: 16px 14px;
           flex-direction: column;
           align-items: stretch;
         }
 
-        .brand-wrap {
-          justify-content: center;
-        }
-
-        .header-actions {
-          width: 100%;
-          justify-content: stretch;
-        }
-
-        .search-box {
-          min-width: 0;
+        .top-actions {
           width: 100%;
         }
 
-        .button {
+        .search-wrap {
           width: 100%;
+        }
+
+        .list-header {
+          display: none;
+        }
+
+        .country-row {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          padding: 16px;
+        }
+
+        .row-actions {
+          justify-content: flex-start;
         }
       }
     </style>
   </head>
   <body>
-    <header class="topbar">
-      <div class="brand-wrap">
-        <div class="brand-badge">PZ</div>
-        <h1 class="title">PZ IPTV</h1>
-      </div>
+    <div class="page">
+      <header class="topbar">
+        <div class="brand" aria-label="PZ IPTV">
+          <div class="brand-mark">PZ</div>
+          <div class="brand-name">PZ IPTV</div>
+        </div>
 
-      <div class="header-actions">
-        <label class="search-box" aria-label="Hledat země nebo kanál">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.5 18a7.5 7.5 0 1 1 5.303-12.803A7.5 7.5 0 0 1 10.5 18Zm0-2a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Zm9.2 5.2-4.1-4.1 1.4-1.4 4.1 4.1-1.4 1.4Z" fill="currentColor"/>
-          </svg>
-          <input id="searchInput" type="search" autocomplete="off" placeholder="Hledej: cz, sk, de, BBC..." />
-        </label>
+        <div class="top-actions">
+          <label class="search-wrap" aria-label="Vyhledávání zemí a kanálů">
+            <svg viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5 18a7.5 7.5 0 1 1 5.3-12.8A7.5 7.5 0 0 1 10.5 18Zm0-2a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Zm9.2 5.2-4.1-4.1 1.4-1.4 4.1 4.1-1.4 1.4Z"/>
+            </svg>
+            <input id="searchInput" type="search" autocomplete="off" placeholder="Vyhledat země nebo kanál..." />
+          </label>
 
-        <button id="copyProjectBtn" class="button" type="button" title="Kopírovat odkaz na celý projekt">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 9.75A2.75 2.75 0 0 1 11.75 7h6.5A2.75 2.75 0 0 1 21 9.75v6.5A2.75 2.75 0 0 1 18.25 19h-6.5A2.75 2.75 0 0 1 9 16.25v-6.5Zm-4.5 1.5A2.75 2.75 0 0 1 7.25 8.5h2.3v1.25h-2.3A1.5 1.5 0 0 0 5.75 11.25v6.5A1.5 1.5 0 0 0 7.25 19h6.5a1.5 1.5 0 0 0 1.5-1.5v-2.3H14.5v2.3a2.75 2.75 0 0 1-2.75 2.75h-6.5A2.75 2.75 0 0 1 2.5 17.75v-6.5Z" fill="currentColor"/>
-          </svg>
-          Projekt
-        </button>
-      </div>
-    </header>
+          <button id="copyProjectBtn" class="primary-btn" type="button">Kopírovat projekt</button>
+        </div>
+      </header>
 
-    <main>
-      <div class="top-summary">
-        <p class="summary-text">Vyhledávej země, kódy nebo názvy kanálů a zkopíruj odkaz pro VLC nebo jiné IPTV přehrávače.</p>
-        <div class="summary-pill"><span class="dot"></span><span id="summaryCounter">Načítání...</span></div>
-      </div>
+      <section class="hero">
+        <h2>Seznam zemí</h2>
+        <p>Vyhledej zemi, státní kód nebo název kanálu a zkopíruj vlastní stream link pro VLC nebo jiný IPTV přehrávač.</p>
+        <div class="stats">
+          <div class="stat"><span class="stat-dot"></span><span id="countryCount">Načítání...</span></div>
+        </div>
+      </section>
 
-      <section id="countryGrid" class="country-grid" aria-live="polite"></section>
-    </main>
+      <section id="countryList" class="list" aria-live="polite"></section>
+    </div>
 
     <div id="toast" class="toast" role="status" aria-live="polite">Zkopírováno.</div>
 
     <script>
       const repoOwner = 'ProgramZelva-dev';
       const repoName = 'pziptv';
-      const baseApi = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/streams`;
+      const streamsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/streams`;
       const projectUrl = 'https://raw.githubusercontent.com/ProgramZelva-dev/pziptv/refs/heads/main/index.m3u';
-
-      const countryNames = {
-        cz: 'Česká republika', sk: 'Slovensko', de: 'Německo', fr: 'Francie', it: 'Itálie', es: 'Španělsko', pl: 'Polsko', uk: 'Spojené království', us: 'Spojené státy', ca: 'Kanada', au: 'Austrálie', at: 'Rakousko', nl: 'Nizozemsko', be: 'Belgie', se: 'Švédsko', no: 'Norsko', fi: 'Finsko', cz: 'Česká republika', hr: 'Chorvatsko', hu: 'Maďarsko', ro: 'Rumunsko', bg: 'Bulharsko', gr: 'Řecko', tr: 'Turecko', ae: 'Spojené arabské emiráty', sa: 'Saúdská Arábie', in: 'Indie', jp: 'Japonsko', kr: 'Jižní Korea', cn: 'Čína', tw: 'Tchaj-wan', br: 'Brazílie', ar: 'Argentina', mx: 'Mexiko', cl: 'Chile', pe: 'Peru', co: 'Kolumbie', pt: 'Portugalsko', ru: 'Rusko', ua: 'Ukrajina', by: 'Bělorusko', kz: 'Kazachstán'
-      };
 
       const state = {
         files: [],
         query: ''
       };
 
-      const grid = document.getElementById('countryGrid');
+      const countryList = document.getElementById('countryList');
       const searchInput = document.getElementById('searchInput');
-      const summaryCounter = document.getElementById('summaryCounter');
+      const countryCount = document.getElementById('countryCount');
       const toast = document.getElementById('toast');
 
       function showToast(message = 'Zkopírováno.') {
         toast.textContent = message;
         toast.classList.add('show');
-        clearTimeout(showToast._timer);
-        showToast._timer = setTimeout(() => toast.classList.remove('show'), 1800);
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(() => toast.classList.remove('show'), 1800);
       }
 
-      function safeCopy(text, fallbackMessage = 'Zkopírováno.') {
+      function safeCopy(value, message = 'Zkopírováno.') {
         if (!navigator.clipboard) {
           showToast('Prohlížeč nepodporuje kopírování.');
           return;
         }
 
-        navigator.clipboard.writeText(text)
-          .then(() => showToast(fallbackMessage))
-          .catch(() => showToast('Kopírování se nezdařilo.'));
+        navigator.clipboard.writeText(value)
+          .then(() => showToast(message))
+          .catch(() => showToast('Kopírování selhalo.'));
       }
 
-      function formatCountryLabel(fileName) {
-        const raw = fileName.replace(/\.m3u$/i, '').trim();
-        const clean = raw.replace(/[_-].*$/, '');
-        const code = clean.toLowerCase();
-        return countryNames[code] || raw.toUpperCase();
+      function normalizeCountryCode(fileName) {
+        const name = fileName.replace(/\.m3u$/i, '').trim();
+        if (!name) return 'unknown';
+        return name.split('_')[0].split('-')[0].toLowerCase();
       }
 
-      function getFileUrl(fileName) {
-        return `https://raw.githubusercontent.com/${repoOwner}/${repoName}/refs/heads/main/streams/${fileName}`;
+      function getCountryLabel(code) {
+        const locale = 'cs';
+        const labels = {
+          ad: 'Andorra', ae: 'Spojené arabské emiráty', af: 'Afghánistán', ag: 'Antigua a Barbuda', al: 'Albánie', am: 'Arménie', ao: 'Angola', ar: 'Argentina', at: 'Rakousko', au: 'Austrálie', aw: 'Aruba', az: 'Ázerbájdžán', ba: 'Bosna a Hercegovina', bb: 'Barbados', bd: 'Bangladéš', be: 'Belgie', bf: 'Burkina Faso', bg: 'Bulharsko', bh: 'Bahrajn', bi: 'Burundi', bj: 'Benin', bm: 'Bermudy', bn: 'Brunej', bo: 'Bolívie', bq: 'Nizozemské Antily', br: 'Brazílie', bs: 'Bahamy', bw: 'Botswana', by: 'Bělorusko', bz: 'Belize', ca: 'Kanada', cd: 'Kongo', cf: 'Středoafrická republika', cg: 'Kongo', ch: 'Švýcarsko', ci: 'Pobřeží slonoviny', cl: 'Chile', cm: 'Kamerun', cn: 'Čína', co: 'Kolumbie', cr: 'Kostarika', cu: 'Kuba', cv: 'Kapverdy', cw: 'Curaçao', cy: 'Kypr', cz: 'Česká republika', de: 'Německo', ee: 'Estonsko', eg: 'Egypt', eh: 'Západní Sahara', er: 'Eritrea', es: 'Španělsko', et: 'Etiopie', fi: 'Finsko', fj: 'Fidži', fo: 'Faerské ostrovy', fr: 'Francie', ga: 'Gabon', ge: 'Gruzie', gf: 'Francouzská Guyana', gh: 'Ghana', gl: 'Grónsko', gm: 'Gambie', gn: 'Guinea', gp: 'Guadeloupe', gq: 'Rovníková Guinea', gt: 'Guatemala', gu: 'Guam', gy: 'Guyana', hk: 'Hongkong', hn: 'Honduras', hr: 'Chorvatsko', ht: 'Haiti', hu: 'Maďarsko', id: 'Indonésie', ie: 'Irsko', il: 'Izrael', in: 'Indie', iq: 'Irák', ir: 'Írán', is: 'Island', it: 'Itálie', jm: 'Jamajka', jo: 'Jordánsko', jp: 'Japonsko', ke: 'Keňa', kg: 'Kyrgyzstán', kh: 'Kambodža', kp: 'Severní Korea', kr: 'Jižní Korea', kw: 'Kuvajt', kz: 'Kazachstán', la: 'Laos', lb: 'Libanon', lc: 'Svatá Lucie', li: 'Lichtenštejnsko', lk: 'Srí Lanka', lr: 'Libérie', lt: 'Litva', lu: 'Lucemburk', lv: 'Lotyšsko', ly: 'Libye', ma: 'Maroko', mc: 'Monako', md: 'Moldavsko', me: 'Černá Hora', mg: 'Madagaskar', mk: 'Severní Makedonie', ml: 'Mali', mm: 'Myanmar', mn: 'Mongolsko', mo: 'Macao', mq: 'Martinik', mr: 'Mauritánie', mt: 'Malta', mu: 'Mauricius', mv: 'Maledivy', mw: 'Malawi', mx: 'Mexiko', my: 'Malajsie', mz: 'Mosambik', na: 'Namibie', nc: 'Nová Kaledonie', ne: 'Niger', ng: 'Nigérie', ni: 'Nikaragua', nl: 'Nizozemsko', no: 'Norsko', np: 'Nepál', nz: 'Nový Zéland', om: 'Omán', pa: 'Panama', pe: 'Peru', pf: 'Francouzská Polynésie', pg: 'Papua Nová Guinea', ph: 'Filipíny', pk: 'Pákistán', pl: 'Polsko', pr: 'Portoriko', ps: 'Palestina', pt: 'Portugalsko', py: 'Paraguay', qa: 'Katar', ro: 'Rumunsko', rs: 'Srbsko', ru: 'Rusko', rw: 'Rwanda', sa: 'Saúdská Arábie', sd: 'Sudán', se: 'Švédsko', sg: 'Singapur', si: 'Slovinsko', sk: 'Slovensko', sl: 'Sierra Leone', sm: 'San Marino', sn: 'Senegal', so: 'Somálsko', sr: 'Surinam', st: 'Svatý Tomáš a Princův ostrov', sv: 'Salvador', sx: 'Svatý Martin', sy: 'Sýrie', td: 'Čad', tg: 'Togo', th: 'Thajsko', tj: 'Tádžikistán', tl: 'Východní Timor', tm: 'Turkmenistán', tn: 'Tunisko', tr: 'Turecko', tt: 'Trinidad a Tobago', tw: 'Tchaj-wan', tz: 'Tanzanie', ua: 'Ukrajina', ug: 'Uganda', uk: 'Spojené království', us: 'Spojené státy', uy: 'Uruguay', uz: 'Uzbekistán', va: 'Vatikán', vc: 'Svatý Vincenc a Grenadiny', ve: 'Venezuela', vg: 'Britské Panenské ostrovy', vi: 'Americké Panenské ostrovy', vn: 'Vietnam', ws: 'Samoa', xk: 'Kosovo', ye: 'Jemen', yt: 'Mayotte', za: 'Jihoafrická republika', zm: 'Zambie', zw: 'Zimbabwe'
+        };
+
+        if (labels[code]) return labels[code];
+
+        try {
+          const display = new Intl.DisplayNames([locale], { type: 'region' });
+          return display.of(code.toUpperCase()) || code.toUpperCase();
+        } catch (error) {
+          return code.toUpperCase();
+        }
       }
 
       function parseM3U(content) {
@@ -454,7 +460,6 @@
             const match = line.match(/^#EXTINF.*?,\s*(.*)$/i);
             const title = match ? match[1].trim() : 'Neznámý kanál';
             const url = (lines[i + 1] || '').trim();
-
             if (url && !url.startsWith('#')) {
               channels.push({ title, url });
             }
@@ -464,81 +469,8 @@
         return channels;
       }
 
-      function renderCountries() {
-        const query = state.query.trim().toLowerCase();
-
-        const filtered = state.files.filter((file) => {
-          const label = formatCountryLabel(file.name).toLowerCase();
-          const fileCode = file.name.replace(/\.m3u$/i, '').toLowerCase();
-          const fileQuery = `${label} ${fileCode}`;
-
-          if (!query) return true;
-
-          if (fileQuery.includes(query)) return true;
-
-          const channels = file.channels || [];
-          return channels.some((channel) => (
-            channel.title.toLowerCase().includes(query) ||
-            channel.url.toLowerCase().includes(query)
-          ));
-        });
-
-        summaryCounter.textContent = `${filtered.length} zemí / souborů`;
-
-        if (!filtered.length) {
-          grid.innerHTML = '<div class="empty">Nic neodpovídá hledání. Zkus „cz“, „sk“, „de“, nebo název kanálu.</div>';
-          return;
-        }
-
-        grid.innerHTML = filtered.map((file) => {
-          const label = formatCountryLabel(file.name);
-          const rawUrl = getFileUrl(file.name);
-          const channels = (file.channels || []).slice(0, 20);
-          const channelMarkup = channels.length ? channels.map((channel) => `
-            <div class="channel-item">
-              <span class="channel-name">${escapeHtml(channel.title)}</span>
-              <button class="mini-copy" type="button" data-copy="${escapeAttribute(channel.url)}" aria-label="Kopírovat ${escapeAttribute(channel.title)}">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M9 9.75A2.75 2.75 0 0 1 11.75 7h6.5A2.75 2.75 0 0 1 21 9.75v6.5A2.75 2.75 0 0 1 18.25 19h-6.5A2.75 2.75 0 0 1 9 16.25v-6.5Zm-4.5 1.5A2.75 2.75 0 0 1 7.25 8.5h2.3v1.25h-2.3A1.5 1.5 0 0 0 5.75 11.25v6.5A1.5 1.5 0 0 0 7.25 19h6.5a1.5 1.5 0 0 0 1.5-1.5v-2.3H14.5v2.3a2.75 2.75 0 0 1-2.75 2.75h-6.5A2.75 2.75 0 0 1 2.5 17.75v-6.5Z" fill="currentColor"/>
-                </svg>
-              </button>
-            </div>
-          `).join('') : '<div class="channel-item"><span class="channel-name">Žádné kanály nebyly nalezeny.</span></div>';
-
-          return `
-            <article class="country-card">
-              <div class="country-head">
-                <div>
-                  <h2 class="country-title">${escapeHtml(label)}</h2>
-                  <p class="country-meta">${escapeHtml(file.name)} • ${file.channels.length} kanálů</p>
-                </div>
-                <button class="copy-btn" type="button" data-copy="${escapeAttribute(rawUrl)}" aria-label="Kopírovat odkaz pro ${escapeAttribute(label)}">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M9 9.75A2.75 2.75 0 0 1 11.75 7h6.5A2.75 2.75 0 0 1 21 9.75v6.5A2.75 2.75 0 0 1 18.25 19h-6.5A2.75 2.75 0 0 1 9 16.25v-6.5Zm-4.5 1.5A2.75 2.75 0 0 1 7.25 8.5h2.3v1.25h-2.3A1.5 1.5 0 0 0 5.75 11.25v6.5A1.5 1.5 0 0 0 7.25 19h6.5a1.5 1.5 0 0 0 1.5-1.5v-2.3H14.5v2.3a2.75 2.75 0 0 1-2.75 2.75h-6.5A2.75 2.75 0 0 1 2.5 17.75v-6.5Z" fill="currentColor"/>
-                  </svg>
-                </button>
-              </div>
-              <div class="channels">
-                ${channelMarkup}
-              </div>
-            </article>
-          `;
-        }).join('');
-
-        bindCopyButtons();
-      }
-
-      function bindCopyButtons() {
-        document.querySelectorAll('[data-copy]').forEach((button) => {
-          button.addEventListener('click', () => {
-            const value = button.getAttribute('data-copy');
-            safeCopy(value, 'Odkaz zkopírován.');
-          });
-        });
-      }
-
       function escapeHtml(value = '') {
-        return value
+        return String(value)
           .replace(/&/g, '&amp;')
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;')
@@ -546,31 +478,93 @@
           .replace(/'/g, '&#039;');
       }
 
-      function escapeAttribute(value = '') {
-        return escapeHtml(value).replace(/`/g, '&#96;');
+      function renderCountries() {
+        const query = state.query.trim().toLowerCase();
+
+        const rows = state.files
+          .filter((entry) => {
+            const label = entry.label.toLowerCase();
+            const code = entry.code.toUpperCase();
+            const combined = `${label} ${code}`;
+            if (!query) return true;
+            if (combined.includes(query)) return true;
+            return entry.channels.some((channel) => {
+              return channel.title.toLowerCase().includes(query) || channel.url.toLowerCase().includes(query);
+            });
+          })
+          .sort((a, b) => a.label.localeCompare(b.label, 'cs'));
+
+        countryCount.textContent = `${rows.length} zemí`;
+
+        if (!rows.length) {
+          countryList.innerHTML = '<div class="empty">Nic neodpovídá hledání. Zkuste „cz“, „sk“, „de“ nebo název kanálu.</div>';
+          return;
+        }
+
+        countryList.innerHTML = `
+          <div class="list-header">
+            <div>Země</div>
+            <div>Kanály</div>
+            <div>Akce</div>
+          </div>
+          ${rows.map((item) => {
+            const rawUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/refs/heads/main/streams/${item.name}`;
+            const preview = item.channels.slice(0, 3);
+            const hint = preview.length ? preview.map((channel) => escapeHtml(channel.title)).join(', ') : 'Žádné kanály';
+            return `
+              <article class="country-row" data-code="${escapeHtml(item.code)}">
+                <div class="country-main">
+                  <span class="country-code">${escapeHtml(item.code.toUpperCase())}</span>
+                  <div class="country-name-wrap">
+                    <p class="country-name">${escapeHtml(item.label)}</p>
+                    <p class="country-sub">${escapeHtml(item.name)}</p>
+                  </div>
+                </div>
+                <div class="channel-count">${item.channels.length}</div>
+                <div class="row-actions">
+                  <button class="row-btn primary" type="button" data-copy="${escapeHtml(rawUrl)}">Kopírovat URL</button>
+                  <button class="row-btn" type="button" data-copy="${escapeHtml(item.channels[0]?.url || rawUrl)}" title="${escapeHtml(hint)}">První kanál</button>
+                </div>
+              </article>
+            `;
+          }).join('')}
+        `;
+
+        countryList.querySelectorAll('[data-copy]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const value = button.getAttribute('data-copy');
+            safeCopy(value, 'Odkaz zkopírován.');
+          });
+        });
       }
 
       async function loadStreams() {
         try {
-          const response = await fetch(baseApi);
-          if (!response.ok) throw new Error('Nepodařilo se načíst seznam streamů.');
+          const response = await fetch(streamsUrl);
+          if (!response.ok) throw new Error('Chyba při načtení dat.');
 
           const files = await response.json();
-          const m3uFiles = files.filter((entry) => entry.type === 'file' && /\.m3u$/i.test(entry.name));
+          const m3uFiles = files.filter((item) => item.type === 'file' && /\.m3u$/i.test(item.name));
 
           const enriched = await Promise.all(m3uFiles.map(async (file) => {
-            const text = await fetch(file.download_url).then((r) => r.text());
+            const fileUrl = file.download_url;
+            const text = await fetch(fileUrl).then((res) => res.text());
+            const channels = parseM3U(text);
+            const code = normalizeCountryCode(file.name);
+            const label = getCountryLabel(code);
             return {
               ...file,
-              channels: parseM3U(text)
+              code,
+              label,
+              channels
             };
           }));
 
-          state.files = enriched.sort((a, b) => formatCountryLabel(a.name).localeCompare(formatCountryLabel(b.name), 'cs'));
+          state.files = enriched.filter((entry) => entry.code && entry.code !== 'unknown');
           renderCountries();
         } catch (error) {
           console.error(error);
-          grid.innerHTML = '<div class="empty">Nepodařilo se načíst IPTV seznam. Zkontroluj přístup ke GitHub API.</div>';
+          countryList.innerHTML = '<div class="empty">Nepodařilo se načíst seznam zemí. Zkontrolujte přístup k repozitáři.</div>';
         }
       }
 
@@ -580,7 +574,7 @@
       });
 
       document.getElementById('copyProjectBtn').addEventListener('click', () => {
-        safeCopy(projectUrl, 'Odkaz na celý projekt zkopírován.');
+        safeCopy(projectUrl, 'Projektový link zkopírován.');
       });
 
       loadStreams();
