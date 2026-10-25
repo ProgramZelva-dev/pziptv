@@ -406,7 +406,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.5 18a7.5 7.5 0 1 1 5.3-12.8A7.5 7.5 0 0 1 10.5 18Zm0-2a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Zm9.2 5.2-4.1-4.1 1.4-1.4 4.1 4.1-1.4 1.4Z"/>
             </svg>
-            <input id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Zadej country code nebo název kanálu..." />
+            <input id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Zadej country code, země nebo název programu..." />
           </label>
 
           <button id="copyProjectBtn" class="primary-btn" type="button">Kopírovat projekt</button>
@@ -415,7 +415,7 @@
 
       <section class="hero">
         <h2>Seznam zemí</h2>
-        <p>Vyhledej zemi, kód nebo název kanálu bez ohledu na diakritiku a velikost písmen. Rozbalitelný seznam pro každou zemi zobrazuje všechny kanály.</p>
+        <p>Zadej country code, název země nebo název programu. Při hledání programu se zobrazí odpovídající země a rozbalený seznam shodných programů.</p>
         <div class="stats">
           <div class="stat"><span class="stat-dot"></span><span id="countryCount">Načítání...</span></div>
         </div>
@@ -475,7 +475,7 @@
       }
 
       const countryLabels = {
-        ad: 'Andorra', ae: 'Spojené arabské emiráty', af: 'Afghánistán', ag: 'Antigua a Barbuda', al: 'Albánie', am: 'Arménie', ao: 'Angola', ar: 'Argentina', at: 'Rakousko', au: 'Austrálie', az: 'Ázerbájdžán', ba: 'Bosna a Hercegovina', bb: 'Barbados', bd: 'Bangladéš', be: 'Belgie', bf: 'Burkina Faso', bg: 'Bulharsko', bh: 'Bahrajn', bi: 'Burundi', bj: 'Benin', bo: 'Bolívie', br: 'Brazílie', bs: 'Bahamy', bw: 'Botswana', by: 'Bělorusko', bz: 'Belize', ca: 'Kanada', cd: 'Kongo', cf: 'Středoafrická republika', cg: 'Kongo', ch: 'Švýcarsko', ci: 'Pobřeží slonoviny', cl: 'Chile', cm: 'Kamerun', cn: 'Čína', co: 'Kolumbie', cr: 'Kostarika', cu: 'Kuba', cv: 'Kapverdy', cy: 'Kypr', cz: 'Česká republika', de: 'Německo', ee: 'Estonsko', eg: 'Egypt', er: 'Eritrea', es: 'Španělsko', et: 'Etiopie', fi: 'Finsko', fr: 'Francie', ga: 'Gabon', ge: 'Gruzie', gh: 'Ghana', gl: 'Grónsko', gm: 'Gambie', gn: 'Guinea', gr: 'Řecko', gt: 'Guatemala', gy: 'Guyana', hk: 'Hongkong', hn: 'Honduras', hr: 'Chorvatsko', ht: 'Haiti', hu: 'Maďarsko', id: 'Indonésie', ie: 'Irsko', il: 'Izrael', in: 'Indie', iq: 'Irák', ir: 'Írán', is: 'Island', it: 'Itálie', jm: 'Jamajka', jo: 'Jordánsko', jp: 'Japonsko', ke: 'Keňa', kg: 'Kyrgyzstán', kh: 'Kambodža', kp: 'Severní Korea', kr: 'Jižní Korea', kw: 'Kuvajt', kz: 'Kazachstán', la: 'Laos', lb: 'Libanon', li: 'Lichtenštejnsko', lk: 'Srí Lanka', lt: 'Litva', lu: 'Lucemburk', lv: 'Lotyšsko', ly: 'Libye', ma: 'Maroko', mc: 'Monako', md: 'Moldavsko', me: 'Černá Hora', mg: 'Madagaskar', mk: 'Severní Makedonie', ml: 'Mali', mn: 'Mongolsko', mt: 'Malta', mu: 'Mauricius', mx: 'Mexiko', my: 'Malajsie', mz: 'Mosambik', na: 'Namibie', ne: 'Niger', ng: 'Nigérie', ni: 'Nikaragua', nl: 'Nizozemsko', no: 'Norsko', np: 'Nepál', nz: 'Nový Zéland', om: 'Omán', pa: 'Panama', pe: 'Peru', pg: 'Papua Nová Guinea', ph: 'Filipíny', pk: 'Pákistán', pl: 'Polsko', ps: 'Palestina', pt: 'Portugalsko', py: 'Paraguay', qa: 'Katar', ro: 'Rumunsko', rs: 'Srbsko', ru: 'Rusko', rw: 'Rwanda', sa: 'Saúdská Arábie', sd: 'Sudán', se: 'Švédsko', sg: 'Singapur', si: 'Slovinsko', sk: 'Slovensko', sn: 'Senegal', so: 'Somálsko', sr: 'Surinam', st: 'Svatý Tomáš a Princův ostrov', sv: 'Salvador', sy: 'Sýrie', th: 'Thajsko', tj: 'Tádžikistán', tn: 'Tunisko', tr: 'Turecko', tt: 'Trinidad a Tobago', tw: 'Tchaj-wan', tz: 'Tanzanie', ua: 'Ukrajina', ug: 'Uganda', uk: 'Spojené království', us: 'Spojené státy', uy: 'Uruguay', uz: 'Uzbekistán', ve: 'Venezuela', vn: 'Vietnam', ye: 'Jemen', za: 'Jihoafrická republika', zm: 'Zambie', zw: 'Zimbabwe'
+        ad: 'Andorra', ae: 'Spojené arabské emiráty', af: 'Afghánistán', ag: 'Antigua a Barbuda', al: 'Albánie', am: 'Arménie', ao: 'Angola', ar: 'Argentina', at: 'Rakousko', au: 'Austrálie', az: 'Ázerbájdžán', ba: 'Bosna a Hercegovina', bb: 'Barbados', bd: 'Bangladéš', be: 'Belgie', bf: 'Burkina Faso', bg: 'Bulharsko', bh: 'Bahrajn', bi: 'Burundi', bj: 'Benin', bo: 'Bolívie', br: 'Brazílie', bs: 'Bahamy', bt: 'Bhútán', bw: 'Botswana', by: 'Bělorusko', bz: 'Belize', ca: 'Kanada', cd: 'Kongo', cf: 'Středoafrická republika', cg: 'Kongo', ch: 'Švýcarsko', ci: 'Pobřeží slonoviny', cl: 'Chile', cm: 'Kamerun', cn: 'Čína', co: 'Kolumbie', cr: 'Kostarika', cu: 'Kuba', cv: 'Kapverdy', cy: 'Kypr', cz: 'Česká republika', de: 'Německo', dk: 'Dánsko', do: 'Dominikánská republika', dz: 'Alžírsko', ec: 'Ekvádor', ee: 'Estonsko', eg: 'Egypt', el: 'Řecko', es: 'Španělsko', et: 'Etiopie', fi: 'Finsko', fr: 'Francie', gb: 'Spojené království', ge: 'Gruzie', gh: 'Ghana', gl: 'Grónsko', gm: 'Gambie', gr: 'Řecko', gt: 'Guatemala', gw: 'Guinea-Bissau', gy: 'Guyana', hk: 'Hongkong', hn: 'Honduras', hr: 'Chorvatsko', ht: 'Haiti', hu: 'Maďarsko', id: 'Indonésie', ie: 'Irsko', il: 'Izrael', in: 'Indie', iq: 'Irák', ir: 'Írán', is: 'Island', it: 'Itálie', jm: 'Jamajka', jo: 'Jordánsko', jp: 'Japonsko', ke: 'Keňa', kg: 'Kyrgyzstán', kh: 'Kambodža', kp: 'Severní Korea', kr: 'Jižní Korea', kw: 'Kuvajt', kz: 'Kazachstán', la: 'Laos', lb: 'Libanon', lc: 'Svatá Lucie', li: 'Lichtenštejnsko', lk: 'Srí Lanka', ls: 'Lesotho', lt: 'Litva', lu: 'Lucembursko', lv: 'Lotyšsko', ly: 'Libye', ma: 'Maroko', mc: 'Monako', md: 'Moldavsko', me: 'Černá Hora', mg: 'Madagaskar', mk: 'Severní Makedonie', ml: 'Mali', mm: 'Myanmar', mn: 'Mongolsko', mr: 'Mauritánie', mt: 'Malta', mu: 'Mauricius', mv: 'Maledivy', mw: 'Malawi', mx: 'Mexiko', my: 'Malajsie', mz: 'Mosambik', na: 'Namibie', ne: 'Niger', ng: 'Nigérie', ni: 'Nikaragua', nl: 'Nizozemsko', no: 'Norsko', np: 'Nepál', nz: 'Nový Zéland', om: 'Omán', pa: 'Panama', pe: 'Peru', pg: 'Papua Nová Guinea', ph: 'Filipíny', pk: 'Pakistan', pl: 'Polsko', pt: 'Portugalsko', py: 'Paraguay', qa: 'Katar', ro: 'Rumunsko', rs: 'Srbsko', ru: 'Rusko', rw: 'Rwanda', sa: 'Saúdská Arábie', sc: 'Seychely', sd: 'Sudán', se: 'Švédsko', sg: 'Singapur', si: 'Slovinsko', sk: 'Slovensko', sn: 'Senegal', so: 'Somálsko', sr: 'Surinam', ss: 'Jižní Súdán', st: 'Svatý Tomáš a Princův ostrov', sv: 'Salvador', sy: 'Sýrie', sz: 'Svazijsko', td: 'Čad', tg: 'Togo', th: 'Thajsko', tj: 'Tádžikistán', tm: 'Turkmenistán', tn: 'Tunisko', to: 'Tonga', tr: 'Turecko', tt: 'Trinidad a Tobago', tw: 'Tchaj-wan', tz: 'Tanzanie', ua: 'Ukrajina', ug: 'Uganda', us: 'Spojené státy americké', uy: 'Uruguay', uz: 'Uzbekistán', ve: 'Venezuela', vn: 'Vietnam', ye: 'Jemen', za: 'Jihoafrická republika', zm: 'Zambie', zw: 'Zimbabwe',
       };
 
       function getCountryLabel(code) {
@@ -512,35 +512,63 @@
           .replace(/'/g, '&#039;');
       }
 
+      function matchesCountryQuery(entry, query) {
+        if (!query) return true;
+
+        return [entry.code, entry.label, entry.name, getCountryLabel(entry.code)]
+          .some((value) => normalizeText(value).includes(query));
+      }
+
+      function getMatchingChannels(entry, query) {
+        if (!query) return entry.channels;
+
+        return entry.channels.filter((channel) => {
+          const haystacks = [channel.title, channel.url];
+          return haystacks.some((value) => normalizeText(value).includes(query));
+        });
+      }
+
       function renderCountries() {
         const query = normalizeText(state.query);
 
-        const filtered = state.files.filter((entry) => {
-          const haystacks = [
-            entry.label,
-            entry.code,
-            entry.name,
-            ...entry.channels.map((channel) => channel.title),
-            ...entry.channels.map((channel) => channel.url)
-          ];
+        let filtered = [];
 
-          if (!query) return true;
+        if (!query) {
+          filtered = state.files.map((entry) => ({ ...entry, visibleChannels: entry.channels }));
+        } else {
+          const countryCodeMatch = state.files.some((entry) => normalizeText(entry.code).startsWith(query) || normalizeText(entry.code) === query);
+          const countryLabelMatch = state.files.some((entry) => normalizeText(entry.label).includes(query));
+          const channelMatch = state.files.some((entry) => entry.channels.some((channel) => normalizeText(channel.title).includes(query)));
+          const isCountrySearch = countryCodeMatch || (countryLabelMatch && !channelMatch);
 
-          return haystacks.some((value) => normalizeText(value).includes(query));
-        });
+          if (isCountrySearch) {
+            filtered = state.files
+              .filter((entry) => matchesCountryQuery(entry, query))
+              .map((entry) => ({ ...entry, visibleChannels: entry.channels }));
+          } else {
+            filtered = state.files
+              .map((entry) => {
+                const visibleChannels = getMatchingChannels(entry, query);
+                if (!visibleChannels.length) return null;
+                return { ...entry, visibleChannels };
+              })
+              .filter(Boolean);
+          }
+        }
 
         countryCount.textContent = `${filtered.length} zemí`;
 
         if (!filtered.length) {
-          countryList.innerHTML = '<div class="empty">Nic neodpovídá hledání. Zkus country code jako „cz“, „sk“, „de“ nebo název kanálu.</div>';
+          countryList.innerHTML = '<div class="empty">Nic neodpovídá hledání. Zkus country code jako „cz“, „sk“, „de“ nebo název programu.</div>';
           return;
         }
 
         countryList.innerHTML = filtered.map((item) => {
           const rawUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/refs/heads/main/streams/${item.name}`;
+          const visibleChannels = item.visibleChannels || item.channels;
 
           return `
-            <details class="country-item">
+            <details class="country-item" ${query ? 'open' : ''}>
               <summary>
                 <div class="country-summary-left">
                   <span class="country-code">${escapeHtml(item.code.toUpperCase())}</span>
@@ -551,13 +579,13 @@
                 </div>
 
                 <div class="country-summary-right">
-                  <span class="count-pill">${item.channels.length} kanálů</span>
+                  <span class="count-pill">${visibleChannels.length} kanálů</span>
                   <button class="copy-btn" type="button" data-copy="${escapeHtml(rawUrl)}">URL</button>
                 </div>
               </summary>
 
               <div class="channel-list">
-                ${item.channels.map((channel) => `
+                ${visibleChannels.map((channel) => `
                   <div class="channel-item">
                     <span class="channel-title">${escapeHtml(channel.title)}</span>
                     <button class="mini-btn" type="button" data-copy="${escapeHtml(channel.url)}">Kopírovat</button>
