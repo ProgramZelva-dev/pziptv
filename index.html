@@ -415,7 +415,7 @@
 
       <section class="hero">
         <h2>Seznam zemí</h2>
-        <p>Zadej country code, název země nebo název programu. Při hledání programu se zobrazí odpovídající země a rozbalený seznam shodných programů.</p>
+        <p>Zadej country code, název země nebo název programu. Pokud hledáš program, rozbalí se jen odpovídající země; při hledání země nebo country code zůstávají seznamy sbalené.</p>
         <div class="stats">
           <div class="stat"><span class="stat-dot"></span><span id="countryCount">Načítání...</span></div>
         </div>
@@ -513,15 +513,11 @@
       }
 
       function matchesCountryQuery(entry, query) {
-        if (!query) return true;
-
         return [entry.code, entry.label, entry.name, getCountryLabel(entry.code)]
           .some((value) => normalizeText(value).includes(query));
       }
 
       function getMatchingChannels(entry, query) {
-        if (!query) return entry.channels;
-
         return entry.channels.filter((channel) => {
           const haystacks = [channel.title, channel.url];
           return haystacks.some((value) => normalizeText(value).includes(query));
@@ -532,28 +528,24 @@
         const query = normalizeText(state.query);
 
         let filtered = [];
+        let programQuery = false;
 
         if (!query) {
-          filtered = state.files.map((entry) => ({ ...entry, visibleChannels: entry.channels }));
+          filtered = state.files.map((entry) => ({ ...entry, visibleChannels: entry.channels, shouldOpen: false }));
         } else {
-          const countryCodeMatch = state.files.some((entry) => normalizeText(entry.code).startsWith(query) || normalizeText(entry.code) === query);
-          const countryLabelMatch = state.files.some((entry) => normalizeText(entry.label).includes(query));
-          const channelMatch = state.files.some((entry) => entry.channels.some((channel) => normalizeText(channel.title).includes(query)));
-          const isCountrySearch = countryCodeMatch || (countryLabelMatch && !channelMatch);
+          const countryMatches = state.files.filter((entry) => matchesCountryQuery(entry, query));
+          const programMatches = state.files
+            .map((entry) => ({
+              ...entry,
+              visibleChannels: getMatchingChannels(entry, query)
+            }))
+            .filter((entry) => entry.visibleChannels.length > 0);
 
-          if (isCountrySearch) {
-            filtered = state.files
-              .filter((entry) => matchesCountryQuery(entry, query))
-              .map((entry) => ({ ...entry, visibleChannels: entry.channels }));
-          } else {
-            filtered = state.files
-              .map((entry) => {
-                const visibleChannels = getMatchingChannels(entry, query);
-                if (!visibleChannels.length) return null;
-                return { ...entry, visibleChannels };
-              })
-              .filter(Boolean);
-          }
+          programQuery = programMatches.length > 0 && countryMatches.length === 0;
+
+          filtered = programQuery
+            ? programMatches.map((entry) => ({ ...entry, shouldOpen: true }))
+            : countryMatches.map((entry) => ({ ...entry, visibleChannels: entry.channels, shouldOpen: false }));
         }
 
         countryCount.textContent = `${filtered.length} zemí`;
@@ -568,7 +560,7 @@
           const visibleChannels = item.visibleChannels || item.channels;
 
           return `
-            <details class="country-item" ${query ? 'open' : ''}>
+            <details class="country-item" ${item.shouldOpen ? 'open' : ''}>
               <summary>
                 <div class="country-summary-left">
                   <span class="country-code">${escapeHtml(item.code.toUpperCase())}</span>
